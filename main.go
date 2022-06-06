@@ -59,8 +59,8 @@ func askforplay() (moveInt int) {
 }
 
 func (p *Point) setInput(input int) {
-	if !(input >= 9) {
-		if p.indicator[input] == "" {
+	if !(input > 9) {
+		if p.indicator[input-1] == "" {
 			p.indicator[input-1] = "O"
 		}
 	}
@@ -104,11 +104,11 @@ func (p *Point) checkWinner() (winner bool, key string) {
 }
 
 func (p *Point) getCrossLineCheck() {
-	log.Println("hI JON")
 	lenIndicator := len(p.indicator)
 	square := math.Sqrt(float64(lenIndicator))
 	var lr []int
 	var rl []int
+	log.Println(math.Round(2.7))
 
 	if lenIndicator%2 != 0 {
 		var list []int
@@ -116,20 +116,21 @@ func (p *Point) getCrossLineCheck() {
 			if (i+1)%int(square) != 0 {
 				list = append(list, i)
 			} else {
-				log.Println(list, "IKI KANG")
 				if list[0] == 0 {
+					log.Println("Disini", list)
 					lr = append(lr, list[0])
 					rl = append(rl, i)
 					list = make([]int, 0)
 				} else {
-					lr = append(lr, len(list))
+					log.Println("Disana", list)
+					lr = append(lr, list[len(list)-1]+1)
 					rl = append(rl, i)
 					list = make([]int, 0)
 				}
 			}
-			log.Println(list)
+			log.Println("Boom")
 			log.Println(lr, "lr")
-			log.Println(rl)
+			log.Println(rl, "rl")
 		}
 	}
 }
