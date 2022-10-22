@@ -108,7 +108,6 @@ func (p *Point) getCrossLineCheck() {
 	square := math.Sqrt(float64(lenIndicator))
 	var lr []int
 	var rl []int
-	log.Println(math.Round(2.7))
 
 	if lenIndicator%2 != 0 {
 		var list []int
